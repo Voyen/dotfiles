@@ -13,6 +13,14 @@ add_key() {
 
 }
 
+add_gpg() {
+
+    wget -qO - "$1" | gpg --dearmor > $2.gpg
+    sudo install -o root -g root -m 644 $2.gpg /etc/apt/trusted.gpg.d/
+    rm $2.gpg
+
+}
+
 add_ppa() {
     sudo add-apt-repository -y ppa:"$1" &> /dev/null
 }
