@@ -11,6 +11,12 @@ print_in_purple "\n   Miscellaneous Tools\n\n"
 install_package "cURL" "curl"
 install_package "ShellCheck" "shellcheck"
 install_package "xclip" "xclip"
+install_package "GParted" "gparted"
+install_package "Meld" "meld"
+install_package "SpeedTest CLI" "speedtest-cli"
+install_package "Gnome Tweak Tool" "gnome-tweak-tool"
+install_package "Figlet" "figlet"
+install_package "lolcat" "lolcat"
 
 if [ -d "$HOME/.nvm" ]; then
 

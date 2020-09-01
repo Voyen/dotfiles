@@ -36,29 +36,6 @@ delete-files() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Execute Vim macro
-
-evm() {
-
-    local numberOfTimes="${*: -1}"
-    local files
-
-    if [[ "$numberOfTimes" =~ ^[0-9]+$ ]]; then
-        files=("${@:1:$#-1}")
-    else
-        numberOfTimes="1"
-        files=("$@")
-    fi
-
-    for file in "${files[@]}"; do
-        printf "* %s\n" "$file"
-        vim -c "norm! $numberOfTimes@q" -c "wq" "$file"
-    done
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Get gzip information (gzipped file size + reduction size).
 
 gz() {
@@ -145,71 +122,6 @@ mkd() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Process phone photo.
-
-ppp() {
-
-    # Check if ImageMagick's convert command-line tool is installed.
-
-    if ! command -v "convert" $> /dev/null; then
-        printf "Please install ImageMagick's 'convert' command-line tool!"
-        exit;
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    declare option="$1"
-    declare photo="${2:-*.jpg}"
-    declare geometry="${3:-50%}"
-
-    if [ "$option" != "clean" ] &&
-       [ "$option" != "resize" ]; then
-        option="resize"
-        photo="${1:-*.jpg}"
-        geometry="${2:-50%}"
-    fi
-
-    if [[ "$(echo "${photo##*.}" | tr '[:upper:]' '[:lower:]')" != "png" ]]; then
-        newPhotoName="${photo%.*}.png"
-    else
-        newPhotoName="_${photo%.*}.png"
-    fi
-
-    if [ "$option" == "resize" ]; then
-        convert "$photo" \
-            -colorspace RGB \
-            +sigmoidal-contrast 11.6933 \
-            -define filter:filter=Sinc \
-            -define filter:window=Jinc \
-            -define filter:lobes=3 \
-            -sigmoidal-contrast 11.6933 \
-            -colorspace sRGB \
-            -background transparent \
-            -gravity center \
-            -resize "$geometry" \
-            +append \
-            "$newPhotoName" \
-        && printf "* %s (%s)\n" \
-            "$newPhotoName" \
-            "$geometry"
-
-        return
-    fi
-
-    convert "$photo" \
-        -morphology Convolve DoG:10,10,0 \
-        -negate \
-        -normalize \
-        -blur 0x1 \
-        -channel RBG \
-        -level 10%,91%,0.1 \
-        "$newPhotoName" \
-        && printf "* %s\n" "$newPhotoName"
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Search history.
 
 qh() {
@@ -229,4 +141,25 @@ qt() {
     grep -ir --color=always "$*" --exclude-dir=".git" --exclude-dir="node_modules" . | less -RX
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Show contents of dir after action
+
+cd () {
+  builtin cd "$1"
+  ls -ACF
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# With no arguments opens current directory, otherwise opens the given one
+
+function o() {
+  if [ $# -eq 0 ]; then
+    open .
+  else
+    open "$@"
+  fi
 }

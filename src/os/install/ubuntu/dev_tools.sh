@@ -6,6 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Git\n\n"
+print_in_purple "\n   Developer Tools\n\n"
 
-install_package "Git" "git"
+install_package "AWS CLI" "awscli"
+install_package "OpenJDK" "openjdk-14-jdk"
+install_package "Maven" "maven"

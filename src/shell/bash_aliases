@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# sudo
+alias sudo='sudo '
+alias pls='sudo'
+
+# generics
+alias ll='ls -AlhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias bye='sudo shutdown -h now'
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias open='xdg-open'
+alias python=python3
+alias wimp='dig +short myip.opendns.com @resolver1.opendns.com'
+alias chrome=google-chrome
+alias pip=pip3
+alias cp='cp -rv'
+alias mv='mv -v'
+alias md='mkdir -p'
+alias rd='rmdir'
+alias wget='wget -c'
+alias path='printf "%b\n" "${PATH//:/\\n}"'
+
+# arch specific
+alias k=kubectl
+alias tf=terraform
+
+# git
+alias gs='git status'
+alias gcl='git reset --hard && git clean -f'
+alias gcm='git commit -am'
+alias gco='git checkout'
+
+# maven
+alias mi='mvn install'
+alias mci='mvn clean install'
+alias mfp='mvn clean package javadoc:aggregate'
+
+# yarn
+alias yrs='yarn run start'
+alias yi='yarn install'
