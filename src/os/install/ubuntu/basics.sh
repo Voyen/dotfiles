@@ -33,7 +33,7 @@ install_package "Google Chrome" "google-chrome-stable"
 
 if ! package_is_installed "code"; then
 
-    add_gpg "https://packages.microsoft.com/keys/microsoft.asc" "microsoft"
+    add_gpg "https://packages.microsoft.com/keys/microsoft.asc" "microsoft" \
         || print_error "VS Code (add key)"
 
     add_to_source_list "[arch=amd64] https://packages.microsoft.com/repos/vscode stable main" "vscode.list" \
