@@ -16,7 +16,7 @@ The code is available under the [MIT license][license].
 
 ## TODO
 
-- [] Pre-fill git email (same as y/n prompt, no need for enter if selecting y)
+- [x] Pre-fill git email (same as y/n prompt, no need for enter if selecting y)
 
 <!-- Link labels: -->
 

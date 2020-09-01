@@ -16,6 +16,7 @@ upgrade
 ./image_tools.sh
 ./misc.sh
 ./misc_tools.sh
+./dev_tools.sh
 ./../npm.sh
 
 ./cleanup.sh

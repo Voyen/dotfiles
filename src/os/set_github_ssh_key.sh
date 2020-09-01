@@ -36,8 +36,23 @@ copy_public_ssh_key_to_clipboard () {
 
 generate_ssh_keys() {
 
-    ask "Please provide an email address: " && printf "\n"
-    ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$1"
+    local email="solitary_confinement21@hotmail.com"
+
+    ask_for_confirmation "Use '$email' for git?"
+
+    if ! answer_is_yes; then
+
+        email=""
+
+        while [ -z "$email" ]; do
+            ask "Please provide an email address" && printf "\n"
+            email="$(get_answer)"
+        done
+        
+        ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$1"
+    else
+        ssh-keygen -t rsa -b 4096 -C "$email" -f "$1"
+    fi
 
     print_result $? "Generate SSH keys"
 
