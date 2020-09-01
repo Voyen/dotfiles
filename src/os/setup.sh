@@ -263,6 +263,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    figlet "... and we're live!" | lolcat
+
     if ! $skipQuestions; then
         ./restart.sh
     fi
