@@ -12,3 +12,11 @@ execute "dconf load / < gnome-settings.ini" \
 
 execute "gsettings set com.canonical.Unity.Lenses remote-content-search 'none'" \
     "Turn off 'Remote Search' so that search terms in Dash do not get sent over the internet"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+print_in_purple "\n • VSCode\n"
+
+execute "code --install-extension shan.code-settings-sync" \
+    "Install Settings Sync extension"
+
