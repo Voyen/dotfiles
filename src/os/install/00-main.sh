@@ -13,12 +13,9 @@ upgrade
 
 ./01-build-essentials.sh
 ./02-basics.sh
-./03-nvm.sh
-./04-system-utils.sh
-./05-dev-tools.sh
-./06-image-tools.sh
-./07-misc.sh
-./08-npm.sh
+./03-system-utils.sh
+./04-dev-tools.sh
+./05-image-tools.sh
+./06-misc.sh
 
 ./99-cleanup.sh
-npm
