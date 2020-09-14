@@ -145,15 +145,6 @@ qt() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Show contents of dir after action
-
-cd () {
-  builtin cd "$1"
-  ls -ACF
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # With no arguments opens current directory, otherwise opens the given one
 
 function o() {
