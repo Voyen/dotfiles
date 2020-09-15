@@ -155,6 +155,12 @@ get_os_version() {
 
 }
 
+is_virtualisation_supported() {
+    [[ $(grep -E --color 'vmx|svm' /proc/cpuinfo | head -c1 | wc -c) -ne 0 ]] \
+        && return 0 \
+        || return 1
+}
+
 is_git_repository() {
     git rev-parse &> /dev/null
 }

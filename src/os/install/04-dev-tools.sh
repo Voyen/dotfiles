@@ -40,6 +40,7 @@ fi
 if ! package_is_installed "kubectl"; then
 
     install_package "gnupg2" "gnupg2"
+
     add_key "https://packages.cloud.google.com/apt/doc/apt-key.gpg" \
         || print_error "kubectl (add key)"
 
@@ -50,5 +51,23 @@ if ! package_is_installed "kubectl"; then
         || print_error "kubectl (resync package index files)"
 
     install_package "kubectl" "kubectl"
+
+fi
+
+if is_virtualisation_supported; then
+
+    install_package "VirtualBox" "virtualbox"
+
+    # can't install this headlessly as it needs manual approval during installation
+    # install_package "VirtualBox Extension Pack" "virtualbox-ext-pack"
+
+    if ! cmd_exists "minikube"; then
+
+        execute "curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+            && chmod +x minikube \
+            && sudo install minikube /usr/local/bin/ \
+            && rm minikube"
+
+    fi
 
 fi
