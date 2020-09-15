@@ -29,9 +29,26 @@ if [ -d "$HOME/.nvm" ]; then
         update &> /dev/null \
             || print_error "Yarn (resync package index files)"
 
+        install_package "Yarn" "yarn" "--no-install-recommends"
+
     fi
 
-    install_package "Yarn" "yarn" "--no-install-recommends"
 fi
 
 ./04.2-npm.sh
+
+if ! package_is_installed "kubectl"; then
+
+    install_package "gnupg2" "gnupg2"
+    add_key "https://packages.cloud.google.com/apt/doc/apt-key.gpg" \
+        || print_error "kubectl (add key)"
+
+    add_to_source_list "https://apt.kubernetes.io/ kubernetes-xenial main" "kubernetes.list" \
+        || print_error "kubectl (add to package resource list)"
+
+    update &> /dev/null \
+        || print_error "kubectl (resync package index files)"
+
+    install_package "kubectl" "kubectl"
+
+fi
