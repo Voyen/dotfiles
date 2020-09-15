@@ -28,6 +28,7 @@ alias path='printf "%b\n" "${PATH//:/\\n}"'
 
 # arch specific
 alias k=kubectl
+complete -F __start_kubectl k # to enable bash completion on the alias too
 alias tf=terraform
 
 # git
