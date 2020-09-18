@@ -71,3 +71,17 @@ if is_virtualisation_supported; then
     fi
 
 fi
+
+if ! package_is_installed "gcloud"; then
+
+    install_package "CA Certificates" "ca-certificates"
+
+    add_to_source_list "https://packages.cloud.google.com/apt cloud-sdk main" "google-cloud-sdk.list" \
+        || print_error "google-cloud-sdk (add to package resource list)"
+    
+    update &> /dev/null \
+        || print_error "google-cloud-sdk (resync package index files)"
+    
+    install_package "Google Cloud SDK" "google-cloud-sdk"
+
+fi
