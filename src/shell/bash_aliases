@@ -25,6 +25,7 @@ alias md='mkdir -p'
 alias rd='rmdir'
 alias wget='wget -c'
 alias path='printf "%b\n" "${PATH//:/\\n}"'
+alias vi='vim'
 
 # arch specific
 alias k=kubectl

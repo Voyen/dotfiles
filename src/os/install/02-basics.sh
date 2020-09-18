@@ -11,6 +11,7 @@ print_in_purple "\n   Basics\n\n"
 install_package "Tilix" "tilix"
 install_package "cURL" "curl"
 install_package "Git" "git"
+install_package "Vim" "vim"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
