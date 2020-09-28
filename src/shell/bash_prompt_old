@@ -1,6 +1,9 @@
+#!/bin/bash
+
 #############
 # Bash Prompt mine
 #############
+
 MAGENTA="\[\033[0;35m\]"
 YELLOW="\[\033[01;33m\]"
 BLUE="\[\033[00;34m\]"
@@ -39,14 +42,14 @@ function color_my_prompt {
 export PROMPT_COMMAND=color_my_prompt
  
 # if .git-prompt.sh exists, set options and execute it
-if [ -f ~/bin/.git-prompt.sh ]; then
+if [ -f ~/.dotfiles/src/bin/.git-prompt.sh ]; then
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PS1_SHOWSTASHSTATE=true
   GIT_PS1_SHOWUNTRACKEDFILES=true
   GIT_PS1_SHOWUPSTREAM="verbose git"
   GIT_PS1_HIDE_IF_PWD_IGNORED=true
   GIT_PS1_SHOWCOLORHINTS=true
-  . ~/bin/.git-prompt.sh
+  . ~/.dotfiles/src/bin/.git-prompt.sh
 fi
 
 # if [ -f ~/.local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh ]; then

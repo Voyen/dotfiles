@@ -120,6 +120,7 @@ set_prompts() {
         orange=$(tput setaf 166)
         white=$(tput setaf 15)
         yellow=$(tput setaf 136)
+        violet='\[\033[01;35m\]'
 
     fi
 
@@ -139,11 +140,11 @@ set_prompts() {
     PS1+="$orange\u"        # Username
     PS1+="$white@"
     PS1+="$yellow\h"        # Host
-    PS1+="$white: "
+    PS1+="$white "
     PS1+="$green\w"         # Working directory
     PS1+="\$(get_git_repository_details \"$white on $cyan\")"
-    PS1+="\n"
-    PS1+="\[$reset\]\[$white\]$ \[$reset\]"
+    PS1+="\n$violet└─ $ "
+    PS1+="\[$white\]\[$reset\]"
 
     export PS1
 
