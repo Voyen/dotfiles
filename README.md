@@ -19,6 +19,7 @@ The code is available under the [MIT license][license].
 - [x] Pre-fill git email (same as y/n prompt, no need for enter if selecting y)
 - [ ] Add new section for things to install manually - at the end of it all, just provide a bunch of links to the downloads in the script output
   - [ ] Portecle
+- [ ] Change color of $ prompt to red if last exit code is non-zero
 
 <!-- Link labels: -->
 

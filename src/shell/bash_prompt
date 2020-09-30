@@ -108,6 +108,8 @@ set_prompts() {
     local white=""
     local yellow=""
 
+    local numjobs='$([ \j -gt 0 ] && echo "[\j] ")'
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ "$(tput colors 2> /dev/null || printf "0")" -ge 256 ]; then
@@ -116,6 +118,7 @@ set_prompts() {
         # https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized#the-values
 
         cyan=$(tput setaf 37)
+        red=$(tput setaf 124)
         green=$(tput setaf 64)
         orange=$(tput setaf 166)
         white=$(tput setaf 15)
@@ -142,8 +145,11 @@ set_prompts() {
     PS1+="$yellow\h"        # Host
     PS1+="$white "
     PS1+="$green\w"         # Working directory
-    PS1+="\$(get_git_repository_details \"$white on $cyan\")"
-    PS1+="\n$violet└─ $ "
+    PS1+="\$(get_git_repository_details \"$white on $cyan\")" # Git repo details
+    PS1+="\n$violet└─ "     # Newline start
+    PS1+="$orange$numjobs"  # Number of running jobs (only if >0)
+    PS1+="$(echo $laststatus)"
+    PS1+="$violet$ "
     PS1+="\[$white\]\[$reset\]"
 
     export PS1
