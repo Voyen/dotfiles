@@ -20,6 +20,7 @@ The code is available under the [MIT license][license].
 - [ ] Add new section for things to install manually - at the end of it all, just provide a bunch of links to the downloads in the script output
   - [ ] Portecle
 - [ ] Change color of $ prompt to red if last exit code is non-zero
+- [ ] Add function/alias to run wrapper if exists, fallback to global mvn otherwise
 
 <!-- Link labels: -->
 
